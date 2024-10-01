@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p*6yzo)@as6c_cu2v8_e#nw#_jdjcjpzmzlwmn(u=vu1%uhc9y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -121,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = f"{BASE_DIR}/static"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
