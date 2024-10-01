@@ -29,7 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '.us-east-1.elasticbeanstalk.com']
-# ALLOWED_HOSTS = []
 
 
 # Application definition
