@@ -1,0 +1,30 @@
+language: python
+python:
+  - 3.12
+install:
+  - pip install -r requirements.txt
+before_script:
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
+script:
+  - black --check .
+  - flake8 .
+  - coverage run --source=mysite,polls manage.py test
+after_script:
+  - coveralls
+
+
+
+
+
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: dDTesQ2DUDcAMHH2mg76MOIb1CsVDJoprHm9JMFS4mBuiLT8rAMG/WJ64fM1ZluxyDOgvV2esIv/Ib4GqcJuftbeMtGMo98sc/2KTOFxiCZ2wj8En+lqxqeeS2819IvRSo3x5+NtIs9PLh0E9yHwinrlHqKQQASN9SA6Pl11LHuouQDy9YKCoIFr3Asz78zAZ9w1kr6YPvOe/YwIefAWJZBET2ja6oNAE/t2GIJBj9jw3FQrcWEudhqZWadDX1BYMDwZx6syKJWbPNRFpDmWIxTYG7oidA9rWtoBV6wNbkkOITYV2unp4tr634fG9HJ48Un/KJY45iMF+M6HRAF3OO9pYpML9DbgcRw2oj4V8nWEYTWX6vhjG4aQrGS3cxDfBpB+tFUHzLIoOTjGA+TiNS2l/0R5JF44E4ElnagDBtWmsZLnXYZxrRQY6WJek1KD9wffmPr2eVEtjdVtpe0t4IE0R4LVxADoazYRHfTSgwFWzXaWC3QZydhcbAZgTlbbrWwPow/QOBqueGHW4v0iGfCsnHQ5EghuhuyEBTV8mDJXYPJrJjqScP+PHosa1crGzUEApAS1tyGG+FJsrYZTcR5LCNxWCitoJT/0R8zdfHFR2mNQvg04gSop5N1GDfS6yoazEfeGbWJ5nlD2O1QrhsXLUGQgVSHIjdYgwUoOyd4=
+  secret_access_key:
+    secure: gb6/NDsvLXo2fD1PQfj2skL1Qbgtuw+hqmpoiaPL7iUg86PEmfM49NzzBrRujDLC+ZNs1vOea869BrBZJVxb41v+LB7aZObTq44BySFQInbM/oDEiNHCKBslHaI/X3GRwxJPNabWRufL0PPkiYd8YtyIuRRT7ZhND+v/XWtwBA1l69zpx7w+IKFlkrFoMOq9XxMxE4pogy/xTgaq2SmRyq0oo6BqWuVz/fDVBlMCjamHhs6NjvJxus2cpccU3KC3A13nH93jvOB6AXmsazJfX21eyFg/te00meD6bnlUFh6y9Be6LYj6g4e9GRgA9w3MihOmBFchuBY93Lqyy6dCadXcLdG5GeVj5TFkFyp2A5SJ4ITTqsQtL8XJlRieokzfsAhuRHKxMGWbPw4l6wFXViGpC+BT0jCg1mpEC03talkINNbgFOtuOSB73wNx3xwFh0H49YmlgfDFUbaEjyHazwjrkYU8m3n6KjgoHmyDxYPhwfdFQmj6xQBAScejq6zFrtYFHyyIKZmk1pYtbITmwfmpangnQgfL3k3OPWjyF7su3yo++K8QaYF1OgL78aCwcSRH/V1nsu91+9TLFCBWezcAymP3rIs93zOdq1F2Y4jjyniFUpxY48c6cBCxlljo7Dqe4clcm6CssihQe2raQ0YoB65vXlZWfFm1/pFDtyQ=
+  region: us-east-1
+  app: mysite
+  env: mysite-dev
+  bucket_name: elasticbeanstalk-us-east-1-545009833359
