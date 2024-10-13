@@ -1,8 +1,4 @@
 language: python
-python:
-  - 3.12
-before_install:
-  - wget https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tgz
 install:
   - pip install -r requirements.txt
 before_script:
