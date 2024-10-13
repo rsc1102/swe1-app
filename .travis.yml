@@ -10,6 +10,7 @@ before_script:
   - python manage.py collectstatic --noinput
 script:
   - black --check .
+  - black --diff /home/travis/build/rsc1102/swe1-app/mysite/urls.py
   - flake8 .
   - coverage run --source=mysite,polls manage.py test
 after_script:
