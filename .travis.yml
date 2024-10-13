@@ -35,3 +35,5 @@ deploy:
   app: mysite
   env: mysite-dev
   bucket_name: elasticbeanstalk-us-east-1-545009833359
+  on:
+    branch: main
