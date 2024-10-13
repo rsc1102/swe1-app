@@ -16,6 +16,11 @@ after_script:
   - coveralls
 
 
+env:
+  global:
+    - COVERALLS_REPO_TOKEN=nTKbJjmdfIQtxqK64WgfYxUPOvzWCLAAE
+
+
 
 
 
