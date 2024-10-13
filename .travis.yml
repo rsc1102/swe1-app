@@ -3,6 +3,8 @@ dist: focal
 
 python:
   - 3.12
+before_install:
+  - gem install aws-sdk
 install:
   - pip install -r requirements.txt
 before_script:
